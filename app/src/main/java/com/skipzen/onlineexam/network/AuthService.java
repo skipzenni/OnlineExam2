@@ -1,5 +1,6 @@
 package com.skipzen.onlineexam.network;
 
+import com.skipzen.onlineexam.model.Data;
 import com.skipzen.onlineexam.model.DataItem;
 import com.skipzen.onlineexam.model.QuestionResponse;
 import com.skipzen.onlineexam.model.Response;
@@ -25,5 +26,5 @@ public interface AuthService {
     Call<QuestionResponse> getExamData(@Header("Authorization") String token);
 
     @GET("question")
-    Call<List<QuestionResponse>> getQuestion();
+    Call<DataItem> getQuestion();
 }

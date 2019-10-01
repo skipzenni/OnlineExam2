@@ -36,27 +36,29 @@ public class FaceRecognition extends AppCompatActivity {
         String token = prefManager.getToken();
         //Toast.makeText(this, "token yang tesimpan: " + token, Toast.LENGTH_SHORT).show();
 
+        txtUsername.addTextChangedListener(LoginWather);
+        txtPassword.addTextChangedListener(LoginWather);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                login();
-                Intent intent = new Intent(FaceRecognition.this, TakePhoto.class);
-                startActivity(intent);
-                finish();
+                if(txtUsername.toString() == "100783" & txtPassword.toString() == "123456"){
+                    login();
+                }else{
+                    Toast.makeText(FaceRecognition.this, "Password Salah ", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
-
-        txtUsername.addTextChangedListener(LoginWather);
-        txtPassword.addTextChangedListener(LoginWather);
-
     }
 
     private void login() {
         String username = txtUsername.getText().toString();
         String password = txtPassword.getText().toString();
-
-        AuthProvider authProvider = new AuthProvider(this);
-        authProvider.login(username, password);
+            AuthProvider authProvider = new AuthProvider(this);
+            authProvider.login(username, password);
+            Intent intent = new Intent(FaceRecognition.this, TakePhoto.class);
+            startActivity(intent);
+            finish();
     }
 
     private TextWatcher LoginWather = new TextWatcher() {

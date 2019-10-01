@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.skipzen.onlineexam.model.Data;
 import com.skipzen.onlineexam.model.DataItem;
 import com.skipzen.onlineexam.model.QuestionResponse;
 import com.skipzen.onlineexam.network.AuthService;
@@ -53,26 +54,23 @@ public class Exams extends AppCompatActivity {
 
         AuthService authService = retrofit.create(AuthService.class);
 
-        Call<List<QuestionResponse>> call = authService.getQuestion();
-
-        call.enqueue(new Callback<List<QuestionResponse>>() {
+        Call<DataItem> call = authService.getQuestion();
+        authService.getQuestion().enqueue(new Callback<DataItem>() {
             @Override
-            public void onResponse(Call<List<QuestionResponse>> call, Response<List<QuestionResponse>> response) {
+            public void onResponse(Call<DataItem> call, Response<DataItem> response) {
                 if(!response.isSuccessful()){
                     txtSoalText.setText("Code: " + response.code());
                     return;
                 }
-                List<QuestionResponse> question =response.body();
-                for (QuestionResponse questionResponse : question){
-                    String content = "";
-                    content += "questionText: "  + questionResponse.getData() + "\n";
-                    content += "questionText: "  + questionResponse.getMeta() + "\n";
-                    txtSoalText.append(content);
-                }
+                DataItem dataItems =response.body();
+                String content = "";
+                content += "questionText: "  + dataItems.getQuestionText() + "\n";
+                content += "questionText: "  + dataItems.getQuestionId().toString() + "\n";
+                txtSoalText.append(content);
             }
 
             @Override
-            public void onFailure(Call<List<QuestionResponse>> call, Throwable t) {
+            public void onFailure(Call<DataItem> call, Throwable t) {
                 txtSoalText.setText(t.getMessage());
             }
         });
