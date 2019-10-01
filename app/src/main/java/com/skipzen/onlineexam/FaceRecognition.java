@@ -34,7 +34,7 @@ public class FaceRecognition extends AppCompatActivity {
 
         PrefManager prefManager = new PrefManager(this);
         String token = prefManager.getToken();
-        Toast.makeText(this, "token yang tesimpan: " + token, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "token yang tesimpan: " + token, Toast.LENGTH_SHORT).show();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

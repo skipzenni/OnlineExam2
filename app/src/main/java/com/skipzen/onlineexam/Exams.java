@@ -11,7 +11,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.skipzen.onlineexam.model.DataItem;
+import com.skipzen.onlineexam.model.QuestionResponse;
+import com.skipzen.onlineexam.network.AuthService;
+import com.skipzen.onlineexam.network.RetrofitClient;
 import com.skipzen.onlineexam.util.PrefManager;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Exams extends AppCompatActivity {
 
@@ -33,9 +45,37 @@ public class Exams extends AppCompatActivity {
         txtSoalText = findViewById(R.id.txtSoalText);
         txtJmlSoal = findViewById(R.id.txtJmlSoal);
         imgSoal = findViewById(R.id.imgSoal);
-        PrefManager prefManager = new PrefManager(this);
-        String token = prefManager.getToken();
 
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://indiarkmedia.com/api/v2/exam/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        AuthService authService = retrofit.create(AuthService.class);
+
+        Call<List<QuestionResponse>> call = authService.getQuestion();
+
+        call.enqueue(new Callback<List<QuestionResponse>>() {
+            @Override
+            public void onResponse(Call<List<QuestionResponse>> call, Response<List<QuestionResponse>> response) {
+                if(!response.isSuccessful()){
+                    txtSoalText.setText("Code: " + response.code());
+                    return;
+                }
+                List<QuestionResponse> question =response.body();
+                for (QuestionResponse questionResponse : question){
+                    String content = "";
+                    content += "questionText: "  + questionResponse.getData() + "\n";
+                    content += "questionText: "  + questionResponse.getMeta() + "\n";
+                    txtSoalText.append(content);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<QuestionResponse>> call, Throwable t) {
+                txtSoalText.setText(t.getMessage());
+            }
+        });
 
         btnA.setOnClickListener(new View.OnClickListener() {
             @Override

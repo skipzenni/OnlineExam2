@@ -41,19 +41,11 @@ public class StartExam extends AppCompatActivity {
         btnStartExam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getExamData();
                 Intent intent = new Intent(StartExam.this, Exams.class);
                 startActivity(intent);
                 finish();
             }
         });
-    }
-
-    private void getExamData() {
-        PrefManager prefManager = new PrefManager(this);
-        String token = prefManager.getToken();
-        AuthProvider authProvider = new AuthProvider(this);
-        Call<List<DataItem>> call = (Call<List<DataItem>>) authProvider;
     }
 
     public void Back(View view) {

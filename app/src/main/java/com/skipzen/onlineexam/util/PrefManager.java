@@ -28,15 +28,5 @@ public class PrefManager {
         sharedPreferences.edit().remove("TOKEN").apply();
     }
 
-    public void saveqestionTex(String questionText){
-        sharedPreferences.edit().putString("QUESTIONTEXT", questionText).apply();
-    }
-    public void questionType(String questionType, String questionId, int questionNumber){
-        sharedPreferences.edit().putString("QUESTIONTYPE", questionType).apply();
-        sharedPreferences.edit().putString("QUESTIONID", questionId).apply();
-        sharedPreferences.edit().putInt("QUESTIONNUMBER", questionNumber).apply();
-    }
-    public String getQuestion(){
-        return sharedPreferences.getString("QUESTIONTEXT", null);
-    }
+
 }

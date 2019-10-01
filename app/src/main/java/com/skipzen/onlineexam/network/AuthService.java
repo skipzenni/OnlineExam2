@@ -24,6 +24,6 @@ public interface AuthService {
     @GET("exam/question")
     Call<QuestionResponse> getExamData(@Header("Authorization") String token);
 
-    @GET("exam/question")
-    Call<List<DataItem>> getQuestion();
+    @GET("question")
+    Call<List<QuestionResponse>> getQuestion();
 }
