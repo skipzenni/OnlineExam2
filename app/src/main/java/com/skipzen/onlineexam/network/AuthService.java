@@ -1,7 +1,10 @@
 package com.skipzen.onlineexam.network;
 
+import com.skipzen.onlineexam.model.DataItem;
 import com.skipzen.onlineexam.model.QuestionResponse;
 import com.skipzen.onlineexam.model.Response;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -20,4 +23,7 @@ public interface AuthService {
 
     @GET("exam/question")
     Call<QuestionResponse> getExamData(@Header("Authorization") String token);
+
+    @GET("exam/question")
+    Call<List<DataItem>> getQuestion();
 }

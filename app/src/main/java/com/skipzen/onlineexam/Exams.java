@@ -34,8 +34,8 @@ public class Exams extends AppCompatActivity {
         txtJmlSoal = findViewById(R.id.txtJmlSoal);
         imgSoal = findViewById(R.id.imgSoal);
         PrefManager prefManager = new PrefManager(this);
-        String question = prefManager.getQuestion();
-        Toast.makeText(this, "token yang tesimpan: " + question, Toast.LENGTH_SHORT).show();
+        String token = prefManager.getToken();
+
 
         btnA.setOnClickListener(new View.OnClickListener() {
             @Override

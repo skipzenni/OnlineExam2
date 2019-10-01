@@ -9,12 +9,17 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.skipzen.onlineexam.model.DataItem;
+import com.skipzen.onlineexam.model.QuestionResponse;
 import com.skipzen.onlineexam.network.AuthProvider;
 import com.skipzen.onlineexam.util.PrefManager;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
 
 public class StartExam extends AppCompatActivity {
 
@@ -48,8 +53,7 @@ public class StartExam extends AppCompatActivity {
         PrefManager prefManager = new PrefManager(this);
         String token = prefManager.getToken();
         AuthProvider authProvider = new AuthProvider(this);
-        authProvider.getExamData(token);
-        Toast.makeText(this, "token yang tesimpan: " + token, Toast.LENGTH_SHORT).show();
+        Call<List<DataItem>> call = (Call<List<DataItem>>) authProvider;
     }
 
     public void Back(View view) {

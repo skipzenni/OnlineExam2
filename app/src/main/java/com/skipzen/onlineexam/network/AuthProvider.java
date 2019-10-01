@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.skipzen.onlineexam.model.QuestionResponse;
 import com.skipzen.onlineexam.model.Response;
 import com.skipzen.onlineexam.util.PrefManager;
 
@@ -39,7 +40,25 @@ public class AuthProvider {
             }
         });
 
-    }public void getExamData(String token){
+    }
+
+    public void getExamData(String token){
         authService.getExamData("Bearer " + token);
+    };
+    public void Question(String token){
+        authService.getExamData(token).enqueue(new Callback<QuestionResponse>() {
+            @Override
+            public void onResponse(Call<QuestionResponse> call, retrofit2.Response<QuestionResponse> response) {
+                if (response.isSuccessful()){
+                    PrefManager prefManager = new PrefManager(context);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<QuestionResponse> call, Throwable t) {
+
+            }
+        });
     }
 }
