@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Online Exam</string>
+    <string name="decrip_app">Aplikasi ujian online berbasis android dengan diintegrasikan dengan face recognition</string>
+    <string name="btn_skip">SKIP..</string>
+    <string name="cthSoal">Nana memiliki 50 buah apel yang akan dibagikan kepada 6 anak, berapakah jumlah apel yang didapat masing-masing anak?</string>
+
+</resources>

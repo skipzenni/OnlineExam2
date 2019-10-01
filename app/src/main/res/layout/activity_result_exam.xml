@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg8"
+    tools:context=".ResultExam">
+
+    <TextView
+        android:id="@+id/txtScore"
+        android:layout_width="217dp"
+        android:layout_height="49dp"
+        android:layout_above="@+id/txtSoalBenar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="71dp"
+        android:layout_marginLeft="71dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginRight="72dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:text="Score: 89,78" />
+
+    <TextView
+        android:id="@+id/txtSoalBenar"
+        android:layout_width="217dp"
+        android:layout_height="49dp"
+        android:layout_above="@+id/txtTotalSoal"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginRight="71dp"
+        android:layout_marginBottom="6dp"
+        android:gravity="center"
+        android:text="Jumlah Soal Benar : 44" />
+
+    <TextView
+        android:id="@+id/txtTotalSoal"
+        android:layout_width="217dp"
+        android:layout_height="49dp"
+        android:layout_above="@+id/btnLogOut"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="71dp"
+        android:layout_marginLeft="71dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginRight="72dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Jumlah Soal : 50" />
+
+    <Button
+        android:id="@+id/btnLogOut"
+        android:layout_width="143dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_custom_button"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginEnd="109dp"
+        android:layout_marginRight="109dp"
+        android:layout_marginBottom="205dp"
+        android:gravity="center"
+        android:text="LogOut" />
+
+</RelativeLayout>

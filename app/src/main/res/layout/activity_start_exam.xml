@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/starbg"
+    tools:context=".StartExam">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="283dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtUsername"
+            android:layout_width="290dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Username :  100783" />
+
+        <TextView
+            android:id="@+id/txtDateNow"
+            android:layout_width="290dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Tanggal Ujian :  2019-10-07" />
+
+        <Button
+            android:id="@+id/btnStartExam"
+            android:layout_width="176dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_custom_button"
+            android:text="Mulai Ujian" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="292dp"
+        android:layout_marginRight="292dp"
+        android:onClick="Back"
+        android:text="Back" />
+
+</RelativeLayout>
