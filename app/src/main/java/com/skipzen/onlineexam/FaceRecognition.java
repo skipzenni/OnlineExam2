@@ -21,6 +21,7 @@ public class FaceRecognition extends AppCompatActivity {
 
     Button btnLogin;
     EditText txtUsername, txtPassword;
+    int passUser = 123456;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +42,18 @@ public class FaceRecognition extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(txtUsername.toString() == "100783" & txtPassword.toString() == "123456"){
-                    login();
-                }else{
-                    Toast.makeText(FaceRecognition.this, "Password Salah ", Toast.LENGTH_SHORT).show();
+                String usernameInput = txtUsername.getText().toString().trim();
+                String passwordInput = txtPassword.getText().toString().trim();
+                if (!usernameInput.isEmpty() && !passwordInput.isEmpty()) {
+                    if (passwordInput.equals("123456") && usernameInput.equals("100783")) {
+                        login();
+                    } else if(!passwordInput.equals("123456") && usernameInput.equals("100783")) {
+                        Toast.makeText(FaceRecognition.this, "Password Salah ", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(FaceRecognition.this, "Username Salah ", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(FaceRecognition.this, "Isi Password dan Username Salah ", Toast.LENGTH_SHORT).show();
                 }
 
             }

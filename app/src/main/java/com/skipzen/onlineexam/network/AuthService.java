@@ -1,5 +1,7 @@
 package com.skipzen.onlineexam.network;
 
+import android.view.View;
+
 import com.skipzen.onlineexam.model.Data;
 import com.skipzen.onlineexam.model.DataItem;
 import com.skipzen.onlineexam.model.QuestionResponse;
@@ -27,4 +29,6 @@ public interface AuthService {
 
     @GET("question")
     Call<DataItem> getQuestion();
+
+    void onClick(View view, int position, boolean isLongClick);
 }

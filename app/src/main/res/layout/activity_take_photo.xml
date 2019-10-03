@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:background="@drawable/ic_custom_button"
             android:textColor="@android:color/holo_blue_light"
             android:text="Choose" />
@@ -27,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:background="@drawable/ic_custom_button"
             android:textColor="@android:color/holo_blue_light"
             android:text="Take" />
@@ -37,7 +39,7 @@
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageView"
+        android:layout_below="@id/imgTake"
         android:orientation="horizontal">
 
         <Button
@@ -45,13 +47,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:background="@drawable/ic_custom_button"
             android:text="Upload"
             android:textColor="@android:color/holo_blue_light" />
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgTake"
         android:layout_width="match_parent"
         android:layout_height="410dp"
         android:layout_below="@id/linierLayut" />

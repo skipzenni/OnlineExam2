@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.skipzen.onlineexam.util.PrefManager;
+
 public class ResultExam extends AppCompatActivity {
 
     TextView txtScore, txtSoalBenar, txtTotalSoal;
@@ -28,6 +30,9 @@ public class ResultExam extends AppCompatActivity {
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                PrefManager prefManager = new PrefManager(ResultExam.this);
+                String token = prefManager.getToken();
+                prefManager.clearToken();
                 Intent intent = new Intent(ResultExam.this, FaceRecognition.class);
                 startActivity(intent);
                 finish();
