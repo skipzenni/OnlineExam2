@@ -10,12 +10,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.internal.service.Common;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.skipzen.onlineexam.model.Common;
 import com.skipzen.onlineexam.model.DataItem;
 import com.skipzen.onlineexam.model.QuestionResponse;
 import com.skipzen.onlineexam.model.Questions;
@@ -35,7 +35,7 @@ import static com.skipzen.onlineexam.util.PrefManager.categoriId;
 public class StartExam extends AppCompatActivity {
 
     FirebaseDatabase database;
-    DatabaseReference Questions;
+    DatabaseReference questions;
     Button btnStartExam;
     TextView txtUsername, txtTanggalSekarang, txtBack;
 
@@ -50,8 +50,8 @@ public class StartExam extends AppCompatActivity {
         txtBack = findViewById(R.id.txtBack);
 
         database = FirebaseDatabase.getInstance();
-        Questions = database.getReference("Questions");
-        loadQuestion(PrefManager.categoriId);
+        questions = database.getReference("Questions");
+        loadQuestion(Common.categoriId);
 
         btnStartExam.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,24 +64,24 @@ public class StartExam extends AppCompatActivity {
     }
 
     private void loadQuestion(String categoriId) {
-        if(PrefManager.questionsList.size()>0)
-            PrefManager.questionsList.clear();
-        Questions.orderByChild("CategoriId").equalTo(categoriId)
+        if(Common.questionsList.size()>0)
+            Common.questionsList.clear();
+        questions.orderByChild("CategoriId").equalTo(categoriId)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-                            Questions questions = dataSnapshot1.getValue(Questions.class);
-                            PrefManager.questionsList.add(questions);
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot postSnapshot1 : dataSnapshot.getChildren()){
+                            Questions ques = postSnapshot1.getValue(Questions.class);
+                            Common.questionsList.add(ques);
                         }
                     }
 
                     @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    public void onCancelled(DatabaseError databaseError) {
 
                     }
                 });
-        Collections.shuffle(PrefManager.questionsList);
+        Collections.shuffle(Common.questionsList);
     }
 
     public void Back(View view) {

@@ -3,7 +3,13 @@
     <string name="decrip_app">Aplikasi ujian online berbasis android dengan diintegrasikan dengan face recognition</string>
     <string name="btn_skip">SKIP..</string>
     <string name="cthSoal">Nana memiliki 50 buah apel yang akan dibagikan kepada 6 anak, berapakah jumlah apel yang didapat masing-masing anak?</string>
-
+    <string name="geuide">
+        Panduan Ujian Online\n
+        1. Soal Ujian terdiri dari 25 Soal\n
+        2. Waktu Pengerjaan hanya 30 Menit\n
+        3. Diharapkan untuk tidak meminimaiz Aplikasi agar jawaban tidak ter-reset\n
+        4. Terimakasih
+    </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

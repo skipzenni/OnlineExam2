@@ -21,7 +21,7 @@ public class MenuViewHolder  extends RecyclerView.ViewHolder implements View.OnC
     public MenuViewHolder(@NonNull View itemView) {
         super(itemView);
         txtQuestion = itemView.findViewById(R.id.txtSoalText);
-        txtjmlQuestion = itemView.findViewById(R.id.txtJmlSoal);
+        txtjmlQuestion = itemView.findViewById(R.id.txtTotalQuestion);
         imgQuestion = itemView.findViewById(R.id.imgSoal);
 
         itemView.setOnClickListener(this);

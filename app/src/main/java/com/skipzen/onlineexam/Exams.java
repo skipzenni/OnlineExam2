@@ -142,25 +142,26 @@ public class Exams extends AppCompatActivity implements View.OnClickListener {
         if(index<totalquestion){
             thisQuestion++;
             questionNum.setText(String.format("%d / %d", thisQuestion, totalquestion));
-            progressBar.setProgress(progress);
-
-            if(PrefManager.questionsList.get(index).getImageQuestion().equals("true")){
+            progressBar.setProgress(0);
+            progress=0;
+///sampe sini
+            if(Common.questionsList.get(index).getImageQuestion().equals("true")){
                 //if is image wuestion
                 Picasso.with(getBaseContext())
-                        .load(PrefManager.questionsList.get(index).getQuestion())
+                        .load(Common.questionsList.get(index).getQuestion())
                         .into(imgQuestion);
                 imgQuestion.setVisibility(View.VISIBLE);
-                txtQuestion.setVisibility(View.VISIBLE);
+                questionText.setVisibility(View.INVISIBLE);
             }
             else {
-                txtQuestion.setText(PrefManager.questionsList.get(index).getQuestion());
+                questionText.setText(Common.questionsList.get(index).getQuestion());
                 imgQuestion.setVisibility(View.INVISIBLE);
-                txtQuestion.setVisibility(View.VISIBLE);
+                questionText.setVisibility(View.VISIBLE);
             }
-            btnA.setText(PrefManager.questionsList.get(index).getAnswer_A());
-            btnB.setText(PrefManager.questionsList.get(index).getAnswer_B());
-            btnC.setText(PrefManager.questionsList.get(index).getAnswer_C());
-            btnD.setText(PrefManager.questionsList.get(index).getAnswer_C());
+            btnA.setText(Common.questionsList.get(index).getAnswer_A());
+            btnB.setText(Common.questionsList.get(index).getAnswer_B());
+            btnC.setText(Common.questionsList.get(index).getAnswer_C());
+            btnD.setText(Common.questionsList.get(index).getAnswer_C());
 
             countDownTimer.start();//start timer
         }
@@ -169,8 +170,8 @@ public class Exams extends AppCompatActivity implements View.OnClickListener {
             Intent intent =  new Intent(this,ResultExam.class);
             Bundle bundle = new Bundle();
             bundle.putInt("SCORE", score);
-            bundle.putInt("TOTAL",jmlQuestion);
-            bundle.putInt("Answer", Answer);
+            bundle.putInt("TOTAL",totalquestion);
+            bundle.putInt("Answer", currentAnswer);
             intent.putExtras(bundle);
             startActivity(intent);
             finish();
@@ -178,12 +179,12 @@ public class Exams extends AppCompatActivity implements View.OnClickListener {
     }
 
     @Override
-    protected void onPostResume(){
-        super.onPostResume();
-        jmlQuestion = PrefManager.questionsList.size();
-        countDownTimer = new CountDownTimer(TIMOUT,INTERVAL) {
+    protected void onResume() {
+        super.onResume();
+        totalquestion = Common.questionsList.size();
+        countDownTimer = new CountDownTimer(TIMOUT, INTERVAL) {
             @Override
-            public void onTick(long l) {
+            public void onTick(long minisec) {
                 progressBar.setProgress(progress);
                 progress++;
             }
@@ -196,4 +197,5 @@ public class Exams extends AppCompatActivity implements View.OnClickListener {
         };
         showQuestion(index);
     }
+
 }
