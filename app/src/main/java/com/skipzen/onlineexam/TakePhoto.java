@@ -67,7 +67,7 @@ public class TakePhoto extends AppCompatActivity implements View.OnClickListener
                             progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "File Uploaded", Toast.LENGTH_LONG).show();
 
-                            Intent intent = new Intent(TakePhoto.this, StartExam.class);
+                            Intent intent = new Intent(TakePhoto.this, Home.class);
                             startActivity(intent);
                             finish();
                         }
@@ -98,7 +98,7 @@ public class TakePhoto extends AppCompatActivity implements View.OnClickListener
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "File Uploaded", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(TakePhoto.this, StartExam.class);
+                            Intent intent = new Intent(TakePhoto.this, Home.class);
                             startActivity(intent);
                             finish();
                         }

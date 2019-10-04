@@ -4,4 +4,7 @@
     <string name="btn_skip">SKIP..</string>
     <string name="cthSoal">Nana memiliki 50 buah apel yang akan dibagikan kepada 6 anak, berapakah jumlah apel yang didapat masing-masing anak?</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

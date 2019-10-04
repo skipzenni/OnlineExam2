@@ -13,9 +13,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.internal.service.Common;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.skipzen.onlineexam.model.Common;
 import com.skipzen.onlineexam.model.Data;
 import com.skipzen.onlineexam.model.DataItem;
 import com.skipzen.onlineexam.model.QuestionResponse;
@@ -36,16 +36,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Exams extends AppCompatActivity implements View.OnClickListener {
 
     Button btnA, btnB, btnC, btnD;
-    TextView txtScore, txtQuestion, txtJmlSoal;
+    TextView txtScore, questionNum, questionText;
     ImageView imgQuestion;
-    final static Long INTERVAL = Long.valueOf(2000);
+    final static Long INTERVAL = Long.valueOf(1000);
     final static Long TIMOUT = Long.valueOf(1800000);
     int progress = 0;
     CountDownTimer countDownTimer;
-    int index=0, score=0, questionStayIn=0, jmlQuestion, Answer;
+    int index=0, score=0, thisQuestion=0, totalquestion, currentAnswer;
 
     FirebaseDatabase database;
-    DatabaseReference Question;
+    DatabaseReference question;
 
     ProgressBar progressBar ;
 
@@ -56,16 +56,18 @@ public class Exams extends AppCompatActivity implements View.OnClickListener {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         database = FirebaseDatabase.getInstance();
-        Question = database.getReference("Questions");
+        question = database.getReference("Questions");
 
         btnA = findViewById(R.id.btnA);
         btnB = findViewById(R.id.btnB);
         btnC = findViewById(R.id.btnC);
         btnD = findViewById(R.id.btnD);
-        txtScore = findViewById(R.id.txtNomorSoal);
-        txtQuestion = findViewById(R.id.txtSoalText);
-        txtJmlSoal = findViewById(R.id.txtJmlSoal);
+        txtScore = findViewById(R.id.txtScore);
+        questionNum = findViewById(R.id.txtTotalQuestion);
+        questionText = findViewById(R.id.txtSoalText);
         imgQuestion = findViewById(R.id.imgSoal);
+
+        progressBar = findViewById(R.id.progressBar);
 
         btnA.setOnClickListener(this);
         btnB.setOnClickListener(this);
@@ -115,19 +117,19 @@ public class Exams extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         countDownTimer.cancel();
-        if(index<jmlQuestion){
+        if(index<totalquestion){
             Button clickButton = (Button) view;
-            if(clickButton.getText().equals(PrefManager.questionsList.get(index).getCurrentAnswer())){
+            if(clickButton.getText().equals(Common.questionsList.get(index).getCurrentAnswer())){
                 score+=4;
-                Answer++;
+                currentAnswer++;
                 showQuestion(++index);
             }
             else{
                 Intent intent = new Intent(this, ResultExam.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("Score : ", score);
-                bundle.putInt("Total Pertanyaan : ", jmlQuestion);
-                bundle.putInt("Answer : ", Answer);
+                bundle.putInt("Total Pertanyaan : ", totalquestion);
+                bundle.putInt("Answer : ", currentAnswer);
                 intent.putExtras(bundle);
                 startActivity(intent);
                 finish();
@@ -136,10 +138,10 @@ public class Exams extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    private void showQuestion(int i) {
-        if(index<jmlQuestion){
-            questionStayIn++;
-            txtJmlSoal.setText(String.format("%d / %d", questionStayIn, jmlQuestion));
+    private void showQuestion(int index) {
+        if(index<totalquestion){
+            thisQuestion++;
+            questionNum.setText(String.format("%d / %d", thisQuestion, totalquestion));
             progressBar.setProgress(progress);
 
             if(PrefManager.questionsList.get(index).getImageQuestion().equals("true")){
